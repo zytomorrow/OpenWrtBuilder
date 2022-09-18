@@ -11,10 +11,7 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@master
-    
-    - name: ssh
-      uses: mxschmitt/action-tmate@v3.11
-    
+
     - name: Initialization environment
       env:
         DEBIAN_FRONTEND: noninteractive
@@ -85,7 +82,6 @@ jobs:
         echo "src-link poweroff ./package/poweroff" >>  ./feeds.conf.default
         echo "src-link aliddns ./package/aliddns" >>  ./feeds.conf.default
         echo "src-link dockerman ./package/dockerman" >>  ./feeds.conf.default
-        echo "src-link poweroff ./package/poweroff" >>  ./feeds.conf.default
         echo "src-link serverchan ./package/serverchan" >>  ./feeds.conf.default
 
     - name: Update & Install feeds
