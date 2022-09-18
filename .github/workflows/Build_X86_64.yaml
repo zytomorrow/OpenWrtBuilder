@@ -77,8 +77,8 @@ jobs:
         echo "src-git destan19 https://github.com/destan19/OpenAppFilter.git" >>  ./feeds.conf.default
         echo "src-git fw876 https://github.com/fw876/helloworld.git" >>  ./feeds.conf.default
         echo "src-git xiaorouji https://github.com/xiaorouji/openwrt-passwall.git" >>  ./feeds.conf.default
-        echo "src-link luci-app-adguardhome ./package/luci-app-adguardhome" >>  ./feeds.conf.default
-        echo "src-link luci-app-bandwidthd ./package/luci-app-bandwidthd" >>  ./feeds.conf.default
+        echo "src-link adguardhome ./package/luci-app-adguardhome" >>  ./feeds.conf.default
+        echo "src-link bandwidthd ./package/luci-app-bandwidthd" >>  ./feeds.conf.default
         echo "src-link poweroff ./package/poweroff" >>  ./feeds.conf.default
         echo "src-link aliddns ./package/aliddns" >>  ./feeds.conf.default
         echo "src-link dockerman ./package/dockerman" >>  ./feeds.conf.default
