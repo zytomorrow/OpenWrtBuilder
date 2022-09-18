@@ -54,7 +54,6 @@ jobs:
       working-directory: ./openwrt
       run: |
        echo "src-git kenzok8 https://github.com/kenzok8/openwrt-packages.git"  >> ./feeds.conf.default
-       echo "src-git kenzok8 https://github.com/kenzok8/openwrt-packages.git"  >> ./feeds.conf.default
        echo "src-git jerrykuku https://github.com/jerrykuku/openwrt-package.git"  >> ./feeds.conf.default
        echo "src-git sirpdboy https://github.com/sirpdboy/sirpdboy-package.git"  >> ./feeds.conf.default
        echo "src-git destan19 https://github.com/destan19/OpenAppFilter.git"  >> ./feeds.conf.default
@@ -66,7 +65,7 @@ jobs:
        echo "src-git esirplayground https://github.com/esirplayground/luci-app-poweroff.git"  >> ./feeds.conf.default      
        echo "src-git tty228 https://github.com/tty228/luci-app-serverchan.git"  >> ./feeds.conf.default
        echo "src-git honwen https://github.com/honwen/luci-app-aliddns.git"  >> ./feeds.conf.default
-       echo "src-git openwrt-develop https://github.com/openwrt-develop/luci-theme-atmaterial.git"  >> ./feeds.conf.default
+       echo "src-git openwrtdevelop https://github.com/openwrt-develop/luci-theme-atmaterial.git"  >> ./feeds.conf.default
        echo "src-git lisaac https://github.com/lisaac/luci-app-dockerman.git"  >> ./feeds.conf.default
 
     - name: Update & Install feeds
