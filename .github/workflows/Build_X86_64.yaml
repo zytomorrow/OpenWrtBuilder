@@ -65,7 +65,6 @@ jobs:
        echo "src-git esirplayground https://github.com/esirplayground/luci-app-poweroff.git"  >> ./feeds.conf.default      
        echo "src-git tty228 https://github.com/tty228/luci-app-serverchan.git"  >> ./feeds.conf.default
        echo "src-git honwen https://github.com/honwen/luci-app-aliddns.git"  >> ./feeds.conf.default
-       echo "src-git openwrtdevelop https://github.com/openwrt-develop/luci-theme-atmaterial.git"  >> ./feeds.conf.default
        echo "src-git lisaac https://github.com/lisaac/luci-app-dockerman.git"  >> ./feeds.conf.default
 
     - name: Update & Install feeds
