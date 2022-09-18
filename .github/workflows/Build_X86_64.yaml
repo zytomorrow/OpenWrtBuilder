@@ -13,8 +13,6 @@ jobs:
       uses: actions/checkout@master
 
     - name: Initialization environment
-      env:
-        DEBIAN_FRONTEND: noninteractive
       run: |
         set +e
         docker rmi `docker images -q`
