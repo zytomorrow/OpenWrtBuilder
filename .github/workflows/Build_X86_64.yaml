@@ -59,6 +59,7 @@ jobs:
         git clone https://github.com/openwrt-develop/luci-theme-atmaterial.git ./package/atmaterial
         git clone https://github.com/lisaac/luci-app-dockerman.git ./package/dockerman
         git clone https://github.com/AlexZhuo/luci-app-bandwidthd.git ./package/luci-app-bandwidthd
+        git clone https://github.com/destan19/OpenAppFilter.git ./package/OpenAppFilter
         
     - name: Import external feeds
       working-directory: ./openwrt
@@ -82,6 +83,7 @@ jobs:
         echo "src-link aliddns ./package/aliddns" >>  ./feeds.conf.default
         echo "src-link dockerman ./package/dockerman" >>  ./feeds.conf.default
         echo "src-link serverchan ./package/serverchan" >>  ./feeds.conf.default
+        echo "src-link OpenAppFilter ./package/OpenAppFilter" >>  ./feeds.conf.default
 
     - name: Update & Install feeds
       working-directory: ./openwrt
