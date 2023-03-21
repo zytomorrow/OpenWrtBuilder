@@ -86,7 +86,7 @@ jobs:
         echo "#src-git bandwidthd https://github.com/AlexZhuo/luci-app-bandwidthd.git" >> ./feeds.conf.default
         echo "src-git small https://github.com/kenzok8/small" >> ./feeds.conf.default
         echo "src-git netspeedtest https://github.com/sirpdboy/netspeedtest.git" >> ./feeds.conf.default
-        echo "src-git ddnsgo https://github.com/sirpdboy/luci-app-ddns-go.git ddnsgo" >> ./feeds.conf.default
+        echo "src-git ddnsgo https://github.com/sirpdboy/luci-app-ddns-go.git" >> ./feeds.conf.default
 
     - name: Update & Install feeds
       working-directory: ./openwrt
