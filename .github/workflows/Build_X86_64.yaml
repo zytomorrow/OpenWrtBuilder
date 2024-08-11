@@ -91,24 +91,21 @@ jobs:
 
     - name: Upload buildinfo
       uses: actions/upload-artifact@v3
-      working-directory: ./openwrt
       with:
         name: OpenWrt_buildinfo
-        path: ./artifact/buildinfo/
+        path: ./openwrt/artifact/buildinfo/
 
     - name: Upload package
       uses: actions/upload-artifact@v3
-      working-directory: ./openwrt
       with:
         name: OpenWrt_package
-        path: ./artifact/package/
+        path: ./openwrt/artifact/package/
 
     - name: Upload firmware
       uses: actions/upload-artifact@v3
-      working-directory: ./openwrt
       with:
         name: OpenWrt_firmware
-        path: ./bin/targets/
+        path: ./openwrt/bin/targets/
     
     - name: Send Message to Wechat
       uses: HollowMan6/Wechat-Timed-Message@v1.1.5
