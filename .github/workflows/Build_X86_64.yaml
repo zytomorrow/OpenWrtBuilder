@@ -107,11 +107,12 @@ jobs:
         name: OpenWrt_firmware
         path: ./openwrt/bin/targets/
     
-    - name: Send Message to Wechat
-      uses: HollowMan6/Wechat-Timed-Message@v1.1.5
+    - name: 企业微信markdown消息发送
+      uses: wertycn/work-wechat-send-action@main
       with:
-        TITLE: "OpenWRT编译成功"
-        MSG: "OpenWRT编译成功-版本：${{ inputs.openwrtTag }}" 
-        CORPID: ${{ secrets.CORPID }}
-        CORPSECRET: ${{ secrets.CORPSECRET }}
-        AGENTID: ${{ secrets.AGENTID }}
+        wechat_id: ${{ secrets.CORPID }} # 企业微信id
+        agent_secret: ${{ secrets.CORPSECRET }} # 应用密钥
+        agent_id: ${{ secrets.AGENTID }} #应用id
+        to_user:  ZhangYao # 消息接收人，多个使用竖线|分割,默认为空发送给所有人
+        send_step: main # 消息发送时机 main 正常流程  post action 执行完成后发送
+        content: "OpenWRT编译完成-版本：${{ inputs.openwrtTag }}"
