@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Initialization environment
+    - name: 初始化环境
       env:
         DEBIAN_FRONTEND: noninteractive
       run: |
@@ -28,10 +28,12 @@ jobs:
           python3-pyelftools qemu-utils re2c rsync scons squashfs-tools subversion swig texinfo uglifyjs \
           upx-ucl unzip vim wget xmlto xxd zlib1g-dev zstd
           sudo -E timedatectl set-timezone "Asia/Shanghai"
-    - name: checkout  
+    
+    
+    - name: 拉取编译脚本代码  
       uses: actions/checkout@master
 
-    - name: Clone Openwrt source code
+    - name: 拉取openwrt源码
       env: 
         REPO_URL: https://github.com/immortalwrt/immortalwrt
         REPO_BRANCH: master
@@ -40,33 +42,33 @@ jobs:
         cd openwrt
         git checkout ${{ inputs.openwrtTag }}
     
-    - name: Update & Install feeds
+    - name: 导入依赖
+      run: |
+        mv import_packages.sh openwrt/
+        cd openwrt && bash import_packages.sh
+    
+    - name: 更新及安装依赖
       working-directory: ./openwrt
       run: |
         ./scripts/feeds update -a
         ./scripts/feeds install -a
         ./scripts/feeds install -a
 
-    - name: import packages
-      run: |
-        mv import_packages.sh openwrt/
-        cd openwrt && bash import_packages.sh
-    
-    - name: Configuration Customization
+    - name: 读取配置
       env:
         CONFIG_FILE: 'x86_64.config'
       run: |
         [ -e $CONFIG_FILE ] && mv $CONFIG_FILE openwrt/.config
         cd openwrt && make defconfig
         
-    - name: Download package
+    - name: 下载依赖及包
       working-directory: ./openwrt
       run: |
         make download -j$(nproc) V=s
         find dl -size -1024c -exec ls -l {} \;
         find dl -size -1024c -exec rm -f {} \;
 
-    - name: Build firmware
+    - name: 编译固件
       working-directory: ./openwrt
       run: |
         echo -e "$(nproc) thread build."
@@ -80,7 +82,7 @@ jobs:
         du -h --max-depth=1 ./build_dir
         du -h --max-depth=1 ./bin
 
-    - name: Prepare artifact
+    - name: 准备编译包
       working-directory: ./openwrt
       run: |
         mkdir -p ./artifact/package
@@ -89,19 +91,19 @@ jobs:
         cp -rf $(find ./bin/packages/ -type f -name "*.ipk") ./artifact/package/
         cp -rf $(find ./bin/targets/ -type f -name "*.buildinfo" -o -name "*.manifest") ./artifact/buildinfo/
 
-    - name: Upload buildinfo
+    - name: 上传buildinfo
       uses: actions/upload-artifact@v3
       with:
         name: OpenWrt_buildinfo
         path: ./openwrt/artifact/buildinfo/
 
-    - name: Upload package
+    - name: 上传package
       uses: actions/upload-artifact@v3
       with:
         name: OpenWrt_package
         path: ./openwrt/artifact/package/
 
-    - name: Upload firmware
+    - name: 上传firmware
       uses: actions/upload-artifact@v3
       with:
         name: OpenWrt_firmware
