@@ -6,7 +6,8 @@
 
 个人自用，插件较少。
 
+## 更新
 
-## 感谢
+### 20250109
 
-[coolsnowwolf/lede](https://github.com/coolsnowwolf/lede)
+- 切换到immortalwrt
