@@ -43,10 +43,15 @@ jobs:
         git checkout ${{ inputs.openwrtTag }}
     
     - name: 导入依赖
+      working-directory: ./openwrt
       run: |
-        mv import_packages.sh openwrt/
-        cd openwrt && bash import_packages.sh
+        echo "src-git openwrt_kiddin9 https://github.com/kiddin9/kwrt-packages.git" >> feeds.conf.default
     
+    - name: 导入自定义脚本
+      run: |
+        mkdir openwrt/files/etc/uci-defaults
+        cp custom_siderouter openwrt/files/etc/uci-defaults/custom
+
     - name: 更新及安装依赖
       working-directory: ./openwrt
       run: |

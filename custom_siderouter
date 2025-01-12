@@ -1,0 +1,40 @@
+# Beware! This script will be in /rom/etc/uci-defaults/ as part of the image.
+# Uncomment lines to apply:
+#
+lan_ip_address="10.0.10.200"
+lan_gateway="10.0.10.1"
+lan_dhcp_status=0
+enable_ipv6_status=0
+
+# 去除kiddin外链
+uci -q set base_config.@status[0].links='0'
+uci commit base_config
+
+# 设置主机名映射 解决安卓原生TV首次连不上网的问题
+uci add dhcp domain
+uci set "dhcp.@domain[-1].name=time.android.com"
+uci set "dhcp.@domain[-1].ip=203.107.6.88"
+uci commit dhcp
+
+
+
+# 设置网卡
+uci -q set network.lan.ipaddr="$lan_ip_address"
+uci -q set network.lan.netmask='255.255.255.0'
+uci -q set network.lan.device='eth0'
+uci commit network
+
+# 网关配置
+uci -q set wizard.default.siderouter='1'
+uci -q set wizard.default.lan_gateway='$lan_gateway'
+uci -q set wizard.default.dhcp='$lan_dhcp_status'
+uci -q set wizard.default.ipv6="$enable_ipv6_status"
+uci commit wizard
+/etc/init.d/wizard restart
+
+
+
+uci commit luci
+
+rm -f /etc/uci-defaults/99-custom
+echo "All done!"
