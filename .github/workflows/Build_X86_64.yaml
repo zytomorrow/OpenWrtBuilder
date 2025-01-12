@@ -49,8 +49,8 @@ jobs:
     
     - name: 导入自定义脚本
       run: |
-        mkdir openwrt/files/etc/uci-defaults
-        cp custom_siderouter openwrt/files/etc/uci-defaults/custom
+        mkdir -p ./openwrt/files/etc/uci-defaults
+        cp custom_siderouter ./openwrt/files/etc/uci-defaults/custom
 
     - name: 更新及安装依赖
       working-directory: ./openwrt
